@@ -1,0 +1,277 @@
+:root {
+  --bg: #d9d9d4;
+  --panel: #fbfaf7;
+  --panel-border: #b8b6ad;
+  --text: #171717;
+  --muted: #5f5d57;
+  --accent: #2f5f6f;
+  --accent-dark: #244b58;
+  --danger: #9d2f2f;
+  --focus: #f4c95d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text);
+  background: var(--bg);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.55;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+}
+
+.card {
+  width: min(920px, 100%);
+  max-height: calc(100vh - 64px);
+  overflow: auto;
+  padding: 42px 48px;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 8px;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.12);
+}
+
+.card.narrow {
+  width: min(720px, 100%);
+}
+
+.screen-title {
+  margin: 0 0 24px;
+  font-size: 28px;
+  line-height: 1.25;
+  font-weight: 700;
+  text-align: center;
+}
+
+.lead {
+  max-width: 760px;
+  margin: 0 auto 30px;
+  font-size: 22px;
+  text-align: center;
+}
+
+.scenario-progress {
+  margin: 0 0 22px;
+  color: var(--muted);
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.scenario-text {
+  max-width: 760px;
+  margin: 0 auto 30px;
+  font-size: 22px;
+}
+
+.options {
+  display: grid;
+  gap: 14px;
+  max-width: 760px;
+  margin: 0 auto 26px;
+}
+
+.choice-button,
+.rating-button,
+.primary-button,
+.secondary-button {
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.choice-button {
+  width: 100%;
+  padding: 18px 20px;
+  color: var(--text);
+  background: #ffffff;
+  border: 1px solid #c9c7bd;
+  font-size: 21px;
+  text-align: left;
+}
+
+.choice-button:hover,
+.choice-button:focus-visible {
+  border-color: var(--accent);
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.hint {
+  margin: 0 auto;
+  max-width: 760px;
+  color: var(--muted);
+  font-size: 18px;
+  text-align: center;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.primary-button,
+.secondary-button {
+  min-width: 180px;
+  padding: 13px 22px;
+  font-weight: 700;
+}
+
+.primary-button {
+  color: #ffffff;
+  background: var(--accent);
+}
+
+.primary-button:hover,
+.primary-button:focus-visible {
+  background: var(--accent-dark);
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.secondary-button {
+  color: var(--accent-dark);
+  background: #eef4f5;
+  border: 1px solid #b9ced5;
+}
+
+.form-grid {
+  display: grid;
+  gap: 18px;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 7px;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.field input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #bdb9ad;
+  border-radius: 6px;
+  background: #ffffff;
+  color: var(--text);
+}
+
+.field input:focus {
+  border-color: var(--accent);
+  outline: 3px solid var(--focus);
+  outline-offset: 1px;
+}
+
+.warning {
+  min-height: 26px;
+  margin: 18px auto 0;
+  color: var(--danger);
+  font-weight: 700;
+  text-align: center;
+}
+
+.rating-scale {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  max-width: 700px;
+  margin: 30px auto 22px;
+}
+
+.rating-button {
+  aspect-ratio: 1;
+  color: var(--text);
+  background: #ffffff;
+  border: 1px solid #c9c7bd;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.rating-button:hover,
+.rating-button:focus-visible {
+  border-color: var(--accent);
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.scale-labels {
+  display: flex;
+  justify-content: space-between;
+  gap: 22px;
+  max-width: 700px;
+  margin: 0 auto 28px;
+  color: var(--muted);
+  font-size: 17px;
+}
+
+.scale-labels span:last-child {
+  text-align: right;
+}
+
+.notice {
+  max-width: 760px;
+  margin: 18px auto 0;
+  color: var(--muted);
+  font-size: 16px;
+  text-align: center;
+}
+
+.download-note {
+  max-width: 650px;
+  margin: 22px auto 0;
+  color: var(--muted);
+  font-size: 18px;
+  text-align: center;
+}
+
+@media (max-width: 720px) {
+  .app {
+    padding: 16px;
+  }
+
+  .card {
+    max-height: calc(100vh - 32px);
+    padding: 28px 22px;
+  }
+
+  .screen-title {
+    font-size: 24px;
+  }
+
+  .lead,
+  .scenario-text {
+    font-size: 19px;
+  }
+
+  .choice-button {
+    font-size: 18px;
+  }
+
+  .rating-scale {
+    gap: 7px;
+  }
+
+  .rating-button {
+    font-size: 21px;
+  }
+}
