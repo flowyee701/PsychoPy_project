@@ -442,15 +442,10 @@ function renderFinalScreen() {
   setScreen(`
     <section class="card narrow">
       <h1 class="screen-title">Спасибо за участие!</h1>
-      <p class="lead">Файл с результатами необходимо отправить исследователю.</p>
+      <p class="lead">Результаты отправляются автоматически</p>
       <p id="send-status" class="notice">Подготовка результатов</p>
-      <div class="actions">
-        <button id="download-button" class="primary-button" type="button">Скачать результаты</button>
-      </div>
-      <p class="download-note">Если скачивание не началось автоматически, нажмите кнопку еще раз</p>
     </section>
   `);
-  document.getElementById("download-button").addEventListener("click", downloadResults);
   saveProgress();
   sendResultsToGoogleSheets();
 }
@@ -541,38 +536,8 @@ async function sendResultsToGoogleSheets() {
     statusElement.textContent = "Запрос на отправку выполнен, проверьте Google Таблицу";
   } catch (error) {
     localStorage.setItem("sce8_two_response_submit_error", String(error));
-    statusElement.textContent = "Не удалось отправить результаты автоматически, скачайте CSV и отправьте исследователю";
+    statusElement.textContent = "Не удалось отправить результаты автоматически, сообщите об этом исследователю";
   }
-}
-
-function downloadResults() {
-  const csv = rowsToCSV(state.rows);
-  const timestamp = fileTimestamp(new Date());
-  const participantId = sanitizeFilePart(state.participant.participant_id || "unknown");
-  const filename = `participant_${participantId}_${timestamp}.csv`;
-  const blob = new Blob(["\uFEFF", csv], { type: "text/csv;charset=utf-8" });
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
-  link.href = url;
-  link.download = filename;
-  document.body.appendChild(link);
-  link.click();
-  link.remove();
-  URL.revokeObjectURL(url);
-}
-
-function rowsToCSV(rows) {
-  const header = DATA_COLUMNS.join(",");
-  const body = rows.map((row) => DATA_COLUMNS.map((column) => escapeCSV(row[column])).join(","));
-  return [header, ...body].join("\r\n");
-}
-
-function escapeCSV(value) {
-  const text = value === undefined || value === null ? "" : String(value);
-  if (/[",\r\n]/.test(text)) {
-    return `"${text.replace(/"/g, "\"\"")}"`;
-  }
-  return text;
 }
 
 function escapeHTML(value) {
@@ -603,10 +568,6 @@ function fileTimestamp(date) {
     "-",
     pad(date.getSeconds()),
   ].join("");
-}
-
-function sanitizeFilePart(value) {
-  return String(value).replace(/[^a-zA-Zа-яА-ЯёЁ0-9_-]/g, "_");
 }
 
 function makeParticipantId() {

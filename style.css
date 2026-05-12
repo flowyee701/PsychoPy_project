@@ -236,14 +236,6 @@ input {
   text-align: center;
 }
 
-.download-note {
-  max-width: 650px;
-  margin: 22px auto 0;
-  color: var(--muted);
-  font-size: 18px;
-  text-align: center;
-}
-
 @media (max-width: 720px) {
   .app {
     padding: 16px;
